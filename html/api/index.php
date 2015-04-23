@@ -18,4 +18,20 @@ $app->post('/mock/friends', function (Request $request) use ($app) {
   return $friends;
 });
 
+$app->post('api/mock/', function (Request $request) use ($app) {
+  return 'Hi';
+});
+
+$app->post('api/', function (Request $request) use ($app) {
+  return 'Hi 2';
+});
+
+$app->post('mock/', function (Request $request) use ($app) {
+  return 'Hi 2';
+});
+
+$app->post('/', function (Request $request) use ($app) {
+  return 'Hi 3';
+});
+
 $app->run();
