@@ -12,26 +12,32 @@ $app->before(function (Request $request) {
   }
 });
 
-$app->post('/mock/friends', function (Request $request) use ($app) {
+$app->get('mock/friends/', function (Request $request) use ($app) {
   $path = __DIR__ . '/../../assets/friends.json';
   $friends = file_get_contents($path);
   return $friends;
 });
 
-$app->post('api/mock/', function (Request $request) use ($app) {
+$app->get('api/mock/', function (Request $request) use ($app) {
   return 'Hi';
 });
 
-$app->post('api/', function (Request $request) use ($app) {
+$app->get('api/', function (Request $request) use ($app) {
   return 'Hi 2';
 });
 
-$app->post('mock/', function (Request $request) use ($app) {
-  return 'Hi 2';
-});
-
-$app->post('/', function (Request $request) use ($app) {
+$app->get('/mock', function (Request $request) use ($app) {
   return 'Hi 3';
+});
+
+$app->get('/', function (Request $request) use ($app) {
+  return 'The Hola API';
+});
+
+$app->get('/friends', function (Request $request) use ($app) {
+  $path = __DIR__ . '/../../assets/friends.json';
+  $friends = file_get_contents($path);
+  return $app->json(json_decode($friends));
 });
 
 $app->run();
