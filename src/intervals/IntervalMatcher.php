@@ -4,11 +4,20 @@ namespace Hola\Intervals;
 
 class IntervalMatcher {
 
-  public static function intersect($interval1, $interval2) {
+  public static function intersect(Interval $interval1, Interval $interval2) {
     self::sortIntervals($interval1, $interval2);
+    if (self::noOverlapping($interval1, $interval2)) {
+      return FALSE;
+    }
+
     if (self::isSmallInsideBigInterval($interval1, $interval2)) {
       return $interval2;
     }
+    if (self::doIntervalsPartiallyOverlap($interval1, $interval2)) {
+      return new Interval($interval2->getStartTimestamp(),
+        $interval1->getEndTimestamp());
+    }
+    return FALSE;
   }
 
   /**
@@ -51,12 +60,28 @@ class IntervalMatcher {
   }
 
   /**
+   * Do Intervals partially overlap?
+   *
+   * @param \Hola\Intervals\Interval $interval1
+   * @param \Hola\Intervals\Interval $interval2
+   * @return bool
+   */
+  private static function doIntervalsPartiallyOverlap(Interval $interval1, Interval $interval2) {
+    return
+      self::firstIntervalEarlierStart($interval1, $interval2)
+      &&
+      self::FirstIntervalEarlierEnd($interval1, $interval2)
+      &&
+      self::FirstIntervalEndAfterSecondIntervalStart($interval1, $interval2);
+  }
+
+  /**
    * @param \Hola\Intervals\Interval $interval1
    * @param \Hola\Intervals\Interval $interval2
    * @return bool
    */
   private static function firstIntervalEarlierStart(Interval $interval1, Interval $interval2) {
-    return $interval1->getStart() < $interval2->getStart();
+    return $interval1->getStart() <= $interval2->getStart();
   }
 
   /**
@@ -83,6 +108,23 @@ class IntervalMatcher {
    * @return bool
    */
   private static function FirstIntervalLaterEnd(Interval $interval1, Interval $interval2) {
-    return $interval1->getEnd() > $interval2->getEnd();
+    return $interval1->getEnd() >= $interval2->getEnd();
+  }
+
+  private static function FirstIntervalEndAfterSecondIntervalStart
+  (Interval $interval1, Interval $interval2) {
+    return $interval1->getEnd() > $interval2->getStart();
+  }
+
+  /**
+   * No overlapping.
+   *
+   * @param \Hola\Intervals\Interval $interval1
+   * @param \Hola\Intervals\Interval $interval2
+   * @return bool
+   */
+  private static function noOverlapping(Interval $interval1, Interval $interval2) {
+    return !($interval1->getStart() <= $interval2->getEnd()) &&
+    ($interval1->getEnd() >= $interval2->getStart());
   }
 }
