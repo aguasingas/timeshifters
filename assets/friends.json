@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "name": "John",
+      "avatar": "[avatar path]",
+      "planet": {
+        "name": "Planet X",
+        "img": "[image path]"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Sue",
+      "avatar": "[avatar path]",
+      "planet": {
+        "name": "Planet X",
+        "img": "[image path]"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Mary",
+      "avatar": "[avatar path]",
+      "planet": {
+        "name": "Planet X",
+        "img": "[image path]"
+      }
+    },
+    {
+      "id": 4,
+      "name": "E.T",
+      "avatar": "[avatar path]",
+      "planet": {
+        "name": "Planet X",
+        "img": "[image path]"
+      }
+    }
+]
