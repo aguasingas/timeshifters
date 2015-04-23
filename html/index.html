@@ -5,13 +5,77 @@
   <title>Hol&aacute;</title>
   <link rel="stylesheet" type="text/css" href="libs/bootstrap.min.css"></link>
   <link rel="stylesheet" type="text/css" href="libs/font-awesome.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="libs/cyborg.min.css"></link>
 </head>
-<body style="background-color: grey">
-  <div class="page-header text-center">
-    <h1>Hol&aacute;!</h1>
+<body>
+  
+
+  <div class="container">
+    
+  </div>  
+
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+         <img alt="Brand" src="img/planet.png" height="35px" style="margin-top:-7px;">
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/#/">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Friends</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Messages <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Inbox</a></li>
+            <li><a href="#">Outbox</a></li>
+            <li><a href="#">Archive</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Trash</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Terms of service</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Find friends">
+        </div>
+        <button type="submit" class="btn btn-warning">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profile <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Address book</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Add friend</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Terms of service</a></li>
+          </ul>
+          </li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
   </div>
+</nav>
+
+
+  
+  <div class="container">
+  <h2>Your friends</h2>
   <div class="container-fluid">
     <div ng-view></div>
+  </div>
+
   </div>
 
   <script src="libs/angular.js"></script>

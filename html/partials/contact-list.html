@@ -1,19 +1,23 @@
-<form>
-  <div class="row">
-    <div class="col-md-offset-3 col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">My Contacts</div>
-        <div class="panel-body">
-          <div class="action-checkbox" ng-repeat="contact in vm.contacts">
-            <input id="{{contact.id}}" type="checkbox" value="" height="80" width="80"
-            ng-click="vm.toggleSelection(contact.id)" /> 
-            <label for="{{contact.id}}"><img ng-src="{{contact.avatar}}" /> {{contact.name}} (<img ng-src="{{contact.planet.img}}" height="80" width="80" /> {{contact.planet.name}})</label>
-          </div>
-        </div>
-        <div class="panel-footer">
+<div class="row" ng-repeat="contact in vm.contacts">
+  <div class="panel panel-default">
+    <div class="panel-heading"><img ng-src="{{contact.avatar}}" height="32" width="32" /> {{contact.name}}
+  
+    <span class="pull-right" style="display:block;overflow:hidden;">
+      <span style="font-size:10px;">{{contact.planet.name}}</span>
+      <img ng-src="{{contact.planet.img}}" height="32" width="32" />
+    </span>
+    </div>
+    <div class="panel-body">
+    <form>
+      <div class="action-checkbox">
+        <div class="col-md-3">
+        <p>Status: online</p>
+        <input id="{{contact.id}}" type="checkbox" value="" height="32" width="32"
+          ng-checked="vm.selection.indexOf(contact.id) > -1"
+          ng-click="vm.toggleSelection(contact.id)" /> 
+        <label for="{{contact.id}}"> {{contact.name}} </label>
         </div>
       </div>
-    </div>
-    <div class="col-md-3"></div>
+    </form>
   </div>
-</form>
+</div>
