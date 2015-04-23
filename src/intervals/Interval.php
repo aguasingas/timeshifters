@@ -26,4 +26,12 @@ class Interval {
   public function getEnd() {
     return $this->dateEnd;
   }
+
+  public function getStartTimestamp() {
+    return $this->dateStart->getTimestamp();
+  }
+
+  public function getEndTimestamp() {
+    return $this->dateEnd->getTimestamp();
+  }
 }
