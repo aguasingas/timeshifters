@@ -5,7 +5,8 @@
  * Date: 23/04/15
  * Time: 12:19
  */
+namespace Hola\Intervals;
 
 class IntervalGenerator {
 
-} 
+}
