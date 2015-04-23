@@ -7,9 +7,9 @@ projectsApp.config(['$routeProvider',
 			controller: 'ContactListCtrl',
 			controllerAs: 'vm'
 		})
-		// .when('/projects/add', {
-		// 	templateUrl: 'partials/project-add.html',
-		// 	controller: 'ProjectCrudCtrl',
+		// .when('/available-spots', {
+		// 	templateUrl: 'partials/available-spots.html',
+		// 	controller: 'AvailableSpotsCtrl',
 		// 	controllerAs: 'vm'
 		// })
 		.otherwise({

@@ -1,15 +1,19 @@
-<div class="row">
-  <div class="col-md-offset-3 col-md-6">
-    <div class="panel panel-default">
-      <form>
-      <div class="action-checkbox" ng-repeat="contact in vm.contacts">
-          <input id="{{contact.id}}" type="checkbox" value="" height="80" width="80"
-            ng-checked="vm.selection.indexOf(contact.id) > -1"
+<form>
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">My Contacts</div>
+        <div class="panel-body">
+          <div class="action-checkbox" ng-repeat="contact in vm.contacts">
+            <input id="{{contact.id}}" type="checkbox" value="" height="80" width="80"
             ng-click="vm.toggleSelection(contact.id)" /> 
-          <label for="{{contact.id}}"><img ng-src="{{contact.avatar}}" /> {{contact.name}} (<img ng-src="{{contact.planet.img}}" height="80" width="80" /> {{contact.planet.name}})</label>
+            <label for="{{contact.id}}"><img ng-src="{{contact.avatar}}" /> {{contact.name}} (<img ng-src="{{contact.planet.img}}" height="80" width="80" /> {{contact.planet.name}})</label>
+          </div>
         </div>
-      </form>
+        <div class="panel-footer">
+        </div>
+      </div>
     </div>
+    <div class="col-md-3"></div>
   </div>
-  <div class="col-md-3"></div>
-</div>
+</form>
