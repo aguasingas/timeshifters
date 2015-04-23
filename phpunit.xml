@@ -10,6 +10,7 @@
     <testsuites>
         <testsuite name="Unit Testing">
             <directory>test</directory>
+            <exclude>test/IntervalGeneratorTest.php</exclude>
         </testsuite>
     </testsuites>
 </phpunit>
