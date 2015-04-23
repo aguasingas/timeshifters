@@ -1,0 +1,68 @@
+---
+- hosts: all
+  sudo: true
+  handlers:
+    # Common stuff
+    - name: restart apache
+      action: service name=apache2 state=restarted
+  tasks:
+
+    # Apache2
+    - name: ensure apache is installed
+      apt: name=apache2 state=present
+
+    - name: make sure apache is running
+      action: service name=apache2 state=started enabled=true
+
+    - file: src=/etc/apache2/mods-available/rewrite.load dest=/etc/apache2/mods-enabled/rewrite.load state=link
+      notify: restart apache
+
+    - file: src=/etc/apache2/mods-available/headers.load dest=/etc/apache2/mods-enabled/headers.load state=link
+      notify: restart apache
+
+    - copy: src=templates/site.conf dest=/etc/apache2/sites-enabled/site.conf
+      notify: restart apache
+
+    - file: path=/etc/apache2/sites-enabled/000-default.conf state=absent
+      notify: restart apache
+
+    - file: path=/etc/apache2/conf.d state=directory
+
+    - copy: src=templates/fqdn.conf dest=/etc/apache2/conf.d/fqdn.conf
+      notify: restart apache
+
+    - copy: src=templates/nosendfile.conf dest=/etc/apache2/conf.d/nosendfile.conf
+      notify: restart apache      
+
+    # PHP
+    - name: add php5 ppa
+      apt_repository: repo='ppa:ondrej/php5'
+
+    - name: install PHP5 packages
+      apt: name={{ item }} state=latest
+      with_items:
+      - php5
+      - libapache2-mod-php5
+      - php5-cli
+      - php5-dev
+      - php5-mysql
+      - php-pear
+      - php5-mcrypt
+      - php5-gd
+      - php5-curl
+      - php5-xdebug
+      - php5-readline
+      - php5-sqlite
+
+    - file: path=/etc/php5/conf.d state=directory
+
+    - copy: src=templates/php-site.ini dest=/etc/php5/conf.d/php-site.ini
+      notify: restart apache
+
+    - name: symlink common php configuration for cli handler
+      file: src=/etc/php5/conf.d/php-site.ini dest=/etc/php5/cli/conf.d/php-site.ini state=link
+      notify: restart apache
+
+    - name: symlink common php configuration for apache2 handler
+      file: src=/etc/php5/conf.d/php-site.ini dest=/etc/php5/apache2/conf.d/php-site.ini state=link
+      notify: restart apache
