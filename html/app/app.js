@@ -7,11 +7,11 @@ projectsApp.config(['$routeProvider',
 			controller: 'ContactListCtrl',
 			controllerAs: 'vm'
 		})
-		.when('/available', {
-			templateUrl: 'partials/available-spots.html',
-			controller: 'AvailableSpotsCtrl',
-			controllerAs: 'vm'
-		})
+		// .when('/available-spots', {
+		// 	templateUrl: 'partials/available-spots.html',
+		// 	controller: 'AvailableSpotsCtrl',
+		// 	controllerAs: 'vm'
+		// })
 		.otherwise({
 			redirectTo: "/"
 		});
