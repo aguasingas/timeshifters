@@ -7,6 +7,13 @@
       action: service name=apache2 state=restarted
   tasks:
 
+    - name: create /var/www
+      file: path=/var/www state=directory
+
+    - name: create site symlink
+      file: src=/vagrant dest=/var/www/site state=link
+      notify: restart apache
+
     # Apache2
     - name: ensure apache is installed
       apt: name=apache2 state=present
